@@ -340,17 +340,17 @@ const socialLinks = [
   {
     name: 'X (Twitter)',
     url: 'https://x.com/CarlosGallar85',
-    icon: 'simple-icons:x'
+    icon: 'prime:twitter'
   },
   {
     name: 'GitHub',
     url: 'https://github.com/cagr1',
-    icon: 'devicon:github'
+    icon: 'prime:github'
   },
   {
     name: 'LinkedIn',
     url: 'https://www.linkedin.com/in/carlos-gallardo-5282a0121/',
-    icon: 'devicon:linkedin'
+    icon: 'prime:linkedin'
   }
 ]
 // Methods
