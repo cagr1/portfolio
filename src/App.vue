@@ -183,31 +183,31 @@ const translations = {
           year: '2018',
           title: 'First Steps',
           description: 'Started my web development journey learning HTML, CSS and JavaScript. Discovered my passion for creating digital experiences.',
-          image: '/placeholder.svg?height=300&width=400'
+          image:  './assets/story1.png'
         },
         {
           year: '2019',
           title: 'Backend & Databases',
           description: 'Dove into backend development with .NET and C#, learning about software architecture and SQL Server databases.',
-          image: '/placeholder.svg?height=300&width=400'
+          image:  './assets/story2.jpg'
         },
         {
           year: '2020',
           title: 'Full-Stack Developer',
           description: 'Expanded my skills with .NET Core, Laravel and Vue.js, becoming a full-stack developer. Started working on enterprise projects.',
-          image: '/placeholder.svg?height=300&width=400'
+          image:  './assets/story3.png'
         },
         {
           year: '2022',
           title: 'Cloud & AI',
           description: 'Adopted cloud technologies like Vercel and Supabase. Integrated AI into my projects with Claude, taking applications to the next level.',
-          image: '/placeholder.svg?height=300&width=400'
+          image:  './assets/story4.png'
         },
         {
           year: '2024',
           title: 'Present',
           description: 'Currently developing innovative solutions combining all my skills. Always learning and improving.',
-          image: '/placeholder.svg?height=300&width=400'
+          image:  './assets/story5.png'
         }
       ]
     },
