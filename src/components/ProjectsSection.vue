@@ -6,13 +6,13 @@
         {{ t.projects.title }}
       </h2>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
         <div v-for="(project, index) in projects" :key="project.id"
              @click="openProject(project)"
              class="group relative cursor-pointer animate-fade-in-up"
              :style="{ animationDelay: `${index * 0.15}s` }">
           <!-- Project Card - Versión simplificada sin componente separado -->
-          <div class="relative h-full rounded-2xl bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 overflow-hidden transition-all duration-700 hover:scale-105 hover:-translate-y-4 hover:shadow-2xl hover:shadow-cyan-500/20 hover:border-cyan-500/50">
+          <div class="relative h-full rounded-2xl bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 overflow-hidden transition-all duration-700 hover:scale-[1.02] hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/20 hover:border-cyan-500/50">
             <!-- Animated gradient overlay -->
             <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-blue-500/0 to-purple-500/0 group-hover:from-cyan-500/10 group-hover:via-blue-500/10 group-hover:to-purple-500/10 transition-all duration-700"></div>
             

@@ -52,6 +52,14 @@
                 </svg>
                 <span class="font-semibold text-slate-300 group-hover:text-cyan-400 transition-colors duration-300">GitHub</span>
               </a>
+
+              <a v-if="selectedProject.link" :href="selectedProject.link" target="_blank" rel="noopener noreferrer"
+                 class="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/50 rounded-lg hover:bg-cyan-500/30 transition-all duration-300 hover:scale-105 group">
+                <svg class="w-5 h-5 text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                <span class="font-semibold text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300">Live Demo</span>
+              </a>
             </div>
           </div>
         </div>

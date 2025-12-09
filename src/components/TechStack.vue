@@ -1,31 +1,51 @@
-<!-- components/TechStack.vue -->
 <template>
-  <section id="tech" class="py-24 px-6 relative">
-    <div class="container mx-auto">
+  <section id="tech" class="py-24 relative overflow-hidden">
+    <div class="container mx-auto px-6 mb-16">
       <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
         {{ t.tech.title }}
       </h2>
-      
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-        <div v-for="(tech, index) in technologies" :key="tech.name" 
-             class="group relative flex flex-col items-center gap-4 p-6 rounded-xl bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-500 hover:scale-110 hover:-translate-y-2 cursor-pointer animate-fade-in-up tech-icon-container"
-             :style="{ animationDelay: `${index * 0.1}s` }">
-          <!-- Enhanced Glow effect on hover -->
-          <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-cyan-500/0 via-blue-500/0 to-purple-500/0 group-hover:from-cyan-500/30 group-hover:via-blue-500/20 group-hover:to-purple-500/30 transition-all duration-500 blur-xl group-hover:blur-2xl tech-glow"></div>
-          
-          <!-- Icon with enhanced glow animation -->
-          <div class="relative z-10 text-6xl transform transition-all duration-500 tech-icon" :class="tech.color">
-            <Icon :icon="tech.icon" width="64" height="64" />
+    </div>
+
+    <!-- Marquee Container -->
+    <div class="flex flex-col gap-16 py-8">
+      <!-- Row 1: Left -->
+      <div class="marquee-container">
+        <div class="marquee-track animate-marquee-left">
+          <div 
+            v-for="(tech, index) in [...row1, ...row1]" 
+            :key="`r1-${index}`"
+            class="tech-item flex flex-col items-center gap-4 min-w-[140px] mx-8 group"
+          >
+            <div 
+              class="text-6xl transition-all duration-300 group-hover:scale-110"
+              :class="tech.color"
+            >
+              <Icon :icon="tech.icon" />
+            </div>
+            <span class="text-slate-400 font-medium text-sm group-hover:text-cyan-400 transition-colors">
+              {{ tech.name }}
+            </span>
           </div>
-          
-          <!-- Tech name -->
-          <span class="relative z-10 text-sm font-semibold text-slate-400 group-hover:text-cyan-400 transition-colors duration-300">
-            {{ tech.name }}
-          </span>
-          
-          <!-- Enhanced animated border on hover -->
-          <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <div class="absolute inset-0 rounded-xl border-2 border-cyan-500/70 animate-pulse-border"></div>
+        </div>
+      </div>
+
+      <!-- Row 2: Right -->
+      <div class="marquee-container">
+        <div class="marquee-track animate-marquee-right">
+          <div 
+            v-for="(tech, index) in [...row2, ...row2]" 
+            :key="`r2-${index}`"
+            class="tech-item flex flex-col items-center gap-4 min-w-[140px] mx-8 group"
+          >
+            <div 
+              class="text-6xl transition-all duration-300 group-hover:scale-110"
+              :class="tech.color"
+            >
+              <Icon :icon="tech.icon" />
+            </div>
+            <span class="text-slate-400 font-medium text-sm group-hover:text-cyan-400 transition-colors">
+              {{ tech.name }}
+            </span>
           </div>
         </div>
       </div>
@@ -34,10 +54,65 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
 
-defineProps({
-  t: Object,
-  technologies: Array
+const props = defineProps({
+  t: {
+    type: Object,
+    required: true
+  },
+  technologies: {
+    type: Array,
+    required: true
+  }
 })
+
+// Split technologies into two rows
+const row1 = computed(() => props.technologies.slice(0, Math.ceil(props.technologies.length / 2)))
+const row2 = computed(() => props.technologies.slice(Math.ceil(props.technologies.length / 2)))
+
 </script>
+
+<style scoped>
+.marquee-container {
+  width: 100%;
+  overflow: visible; /* Changed from hidden to visible to prevent clipping */
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  padding: 20px 0; /* Added padding to accommodate glow */
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.animate-marquee-left {
+  animation: marquee-left 40s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 40s linear infinite;
+}
+
+/* Pause on hover */
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Individual Glow Effect */
+.tech-item:hover .text-6xl {
+  filter: drop-shadow(0 0 15px currentColor);
+}
+</style>

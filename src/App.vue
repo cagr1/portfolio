@@ -1,57 +1,74 @@
 <!-- App.vue -->
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100">
-    <!-- Language Toggle -->
-    <LanguageToggle 
-      :current-lang="currentLang"
-      :just-mounted="justMounted"
-      @toggle-language="toggleLanguage"
-    />
-    
-    <!-- Header -->
-    <Header 
-      :scrolled="scrolled"
-      :logo="t.nav.logo"
-      :nav-items="t.nav.items"
-    />
-    
-    <!-- Hero Section -->
-    <HeroSection :t="t" />
-    
-    <!-- Tech Stack -->
-    <TechStack 
-      :t="t"
-      :technologies="technologies"
-    />
-    
-    <!-- Story Timeline -->
-    <StoryTimeline :t="t" />
-    
-    <!-- Projects Section -->
-    <ProjectsSection 
-      :t="t"
-      :projects="projects"
-      @open-project="openProject"
-    />
-    
-    <!-- Footer -->
-    <Footer 
-      :t="t"
-      :social-links="socialLinks"
-    />
-    
-    <!-- Project Modal -->
-    <ProjectModal 
-      :selected-project="selectedProject"
-      :t="t"
-      @close-modal="closeProject"
-    />
+  <div class="min-h-screen bg-slate-950 text-slate-100 overflow-x-hidden">
+    <!-- Preloader -->
+    <Transition name="fade">
+      <div v-if="loading" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950">
+        <div class="text-4xl md:text-6xl font-bold font-mono text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
+          {{ typewrittenText }}<span class="animate-pulse">_</span>
+        </div>
+      </div>
+    </Transition>
+
+    <div v-show="!loading" class="animate-fade-in">
+      <!-- Language Toggle -->
+      <LanguageToggle 
+        :current-lang="currentLang"
+        :just-mounted="justMounted"
+        @toggle-language="toggleLanguage"
+      />
+      
+      <!-- Header -->
+      <Header 
+        :scrolled="scrolled"
+        :logo="t.nav.logo"
+        :nav-items="t.nav.items"
+      />
+      
+      <!-- Hero Section -->
+      <HeroSection :t="t" />
+      
+      <!-- Tech Stack -->
+      <TechStack 
+        :t="t"
+        :technologies="technologies"
+      />
+
+      <!-- About Section -->
+      <AboutSection :t="t" />
+      
+      <!-- Story Timeline -->
+      <StoryTimeline :t="t" />
+      
+      <!-- Projects Section -->
+      <ProjectsSection 
+        :t="t"
+        :projects="projects"
+        @open-project="openProject"
+      />
+      
+      <!-- Footer -->
+      <Footer 
+        :t="t"
+        :social-links="socialLinks"
+      />
+      
+      <!-- Project Modal -->
+      <ProjectModal 
+        :selected-project="selectedProject"
+        :t="t"
+        @close-modal="closeProject"
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { Icon} from '@iconify/vue'
+
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
  // Import components
 import LanguageToggle from './components/LanguageToggle.vue'
 import Header from './components/Header.vue'
@@ -61,12 +78,22 @@ import StoryTimeline from './components/StoryTimeline.vue'
 import ProjectsSection from './components/ProjectsSection.vue'
 import Footer from './components/Footer.vue'
 import ProjectModal from './components/ProjectModal.vue'
+import AboutSection from './components/AboutSection.vue'
+
+// Import Locales
+import { es } from './locales/es'
+import { en } from './locales/en'
+
+// Register GSAP Plugin
+gsap.registerPlugin(ScrollTrigger)
 
 // State
-const currentLang = ref('es')
+const currentLang = ref('en') // Default to English
 const scrolled = ref(false)
 const selectedProject = ref(null)
 const justMounted = ref(true)
+const loading = ref(true)
+const typewrittenText = ref('')
 
 const technologies = [
   { name: '.NET', icon: 'devicon:dotnetcore', color: 'text-purple-500' },
@@ -80,149 +107,14 @@ const technologies = [
   { name: 'Kotlin', icon: 'devicon:kotlin', color: 'text-purple-600' },
   { name: 'Supabase', icon: 'simple-icons:supabase', color: 'text-green-400' },
   { name: 'Python', icon: 'devicon:python', color: 'text-white' },
-  { name: 'Git', icon: 'devicon:git', color: 'text-orange-600' }
+  { name: 'Git', icon: 'devicon:git', color: 'text-orange-600' },
+  { name: 'GSAP', icon: 'simple-icons:gsap', color: 'text-green-500' },
+  { name: 'Motion', icon: 'simple-icons:framer', color: 'text-white' }
 ]
 
 
 // Translations
-const translations = {
-  es: {
-    nav: {
-      logo: 'Dev.Portfolio',
-      items: [
-        { label: 'Inicio', href: '#home' },
-        { label: 'Tecnologías', href: '#tech' },
-        { label: 'Historia', href: '#story' },
-        { label: 'Proyectos', href: '#projects' },
-        { label: 'Contacto', href: '#contact' }
-      ]
-    },
-    hero: {
-      greeting: 'Hola, soy',
-      name: 'Carlos Gallardo',
-      title: 'Desarrollador Full-Stack',
-      description: 'Especializado en .NET, Laravel, Vue.js y tecnologías modernas. Creando soluciones innovadoras que transforman ideas en realidad.',
-      cta: 'Ver Proyectos',
-      contact: 'Contactar'
-    },
-    tech: {
-      title: 'Stack Tecnológico'
-    },
-    story: {
-      title: 'Mi Historia',
-      timeline: [
-        {
-          year: '2018',
-          title: 'Primeros Pasos',
-          description: 'Comencé mi viaje en el desarrollo web aprendiendo HTML, CSS y JavaScript. Descubrí mi pasión por crear experiencias digitales.',
-          image: './assets/story1.png'
-        },
-        {
-          year: '2019',
-          title: 'Backend & Bases de Datos',
-          description: 'Me adentré en el desarrollo backend con .NET y C#, aprendiendo sobre arquitectura de software y bases de datos SQL Server.',
-          image: './assets/story2.jpg'
-        },
-        {
-          year: '2020',
-          title: 'Full-Stack Developer',
-          description: 'Expandí mis habilidades con Laravel y Vue.js, convirtiéndome en desarrollador full-stack. Comencé a trabajar en proyectos empresariales.',
-          image: './assets/story3.png'
-        },
-        {
-          year: '2022',
-          title: 'Cloud & AI',
-          description: 'Adopté tecnologías cloud como Vercel y Supabase. Integré IA en mis proyectos con Claude, llevando las aplicaciones al siguiente nivel.',
-          image: './assets/story4.png'
-        },
-        {
-          year: '2024',
-          title: 'Presente',
-          description: 'Actualmente desarrollo soluciones innovadoras combinando todas mis habilidades. Siempre aprendiendo y mejorando.',
-          image: '/assets/story5.png'
-        }
-      ]
-    },
-    projects: {
-      title: 'Proyectos Destacados',
-      viewMore: 'Ver más',
-      technologies: 'Tecnologías'
-    },
-    footer: {
-      cta: 'Construyamos algo increíble juntos. ¡Contáctame!',
-      emailButton: 'Contáctame',
-      copyright:  '© ' + new Date().getFullYear()  + ' Carlos Gallardo. Todos los derechos reservados.'
-    }
-  },
-  en: {
-    nav: {
-      logo: 'Dev.Portfolio',
-      items: [
-        { label: 'Home', href: '#home' },
-        { label: 'Technologies', href: '#tech' },
-        { label: 'Story', href: '#story' },
-        { label: 'Projects', href: '#projects' },
-        { label: 'Contact', href: '#contact' }
-      ]
-    },
-    hero: {
-      greeting: 'Hi, I\'m',
-      name: 'Carlos Gallardo',
-      title: 'Full-Stack Developer',
-      description: 'Specialized in .NET, Laravel, Vue.js and modern technologies. Creating innovative solutions that transform ideas into reality.',
-      cta: 'View Projects',
-      contact: 'Contact'
-    },
-    tech: {
-      title: 'Tech Stack'
-    },
-    story: {
-      title: 'My Story',
-      timeline: [
-        {
-          year: '2018',
-          title: 'First Steps',
-          description: 'Started my web development journey learning HTML, CSS and JavaScript. Discovered my passion for creating digital experiences.',
-          image:  './assets/story1.png'
-        },
-        {
-          year: '2019',
-          title: 'Backend & Databases',
-          description: 'Dove into backend development with .NET and C#, learning about software architecture and SQL Server databases.',
-          image:  './assets/story2.jpg'
-        },
-        {
-          year: '2020',
-          title: 'Full-Stack Developer',
-          description: 'Expanded my skills with .NET Core, Laravel and Vue.js, becoming a full-stack developer. Started working on enterprise projects.',
-          image:  './assets/story3.png'
-        },
-        {
-          year: '2022',
-          title: 'Cloud & AI',
-          description: 'Adopted cloud technologies like Vercel and Supabase. Integrated AI into my projects with Claude, taking applications to the next level.',
-          image:  './assets/story4.png'
-        },
-        {
-          year: '2024',
-          title: 'Present',
-          description: 'Currently developing innovative solutions combining all my skills. Always learning and improving.',
-          image:  './assets/story5.png'
-        }
-      ]
-    },
-    projects: {
-      title: 'Featured Projects',
-      viewMore: 'View more',
-      technologies: 'Technologies'
-    },
-    footer: {
-      cta: 'Let\'s build something great together.',
-      emailButton: 'Say Hello',
-      copyright: '©' + new Date().getFullYear() + ' Carlos Gallardo. All rights reserved.'
-    }
-  }
-}
+const translations = { es, en }
 
 const t = computed(() => translations[currentLang.value])
 
@@ -234,6 +126,15 @@ const projects = computed(() => {
     return [
       {
         id: 1,
+        title: 'Jen-Co Beauty Studio',
+        description: 'Sitio web para estudio de belleza con animaciones avanzadas y diseño moderno.',
+        image: './assets/project-jenco.png', // Placeholder, user needs to provide or I'll use a generic one
+        tech: ['Vue.js', 'GSAP', 'Motion'],
+        github: 'https://github.com/cagr1/jenco-beauty', // Assuming or placeholder
+        link: 'https://jen-co.vercel.app/'
+      },
+      {
+        id: 2,
         title: 'SysCisepro v4.0',
         description: 'Sistema integral de gestión empresarial desarrollado con .NET y SQL Server. Incluye módulos de inventario, facturación, contabilidad y reportes avanzados.',
         image: './assets/project1.png',
@@ -241,7 +142,7 @@ const projects = computed(() => {
         github: 'https://github.com/cagr1/SysCisepro_v2.0'
       },
       {
-        id: 2,
+        id: 3,
         title: 'Karl Ecuador',
         description: 'Landing page tipo e-commerce con pasarela de pagos y panel administrativo. Desarrollada con Vue.js.',
         image: './assets/project2.png',
@@ -249,7 +150,7 @@ const projects = computed(() => {
         github: 'https://github.com/cagr1/karlecuador'
       },
       {
-        id: 3,
+        id: 4,
         title: 'Cisepro ERP Web',
         description: 'Sistema ERP web moderno con gestión de recursos empresariales, control de inventario y análisis financieros en tiempo real.',
         image: './assets/project3.png',
@@ -257,20 +158,12 @@ const projects = computed(() => {
         github: 'https://github.com/cagr1/Cisepro-ERP-Web'
       },
       {
-        id: 4,
+        id: 5,
         title: 'Financial Dashboard',
         description: 'Dashboard financiero interactivo con visualización de datos, gráficos en tiempo real y reportes personalizables.',
         image: './assets/project4.png',
         tech: ['Vue.js', 'EChart.js', 'Tailwind', '.Net Core 8', 'Vercel'],
         github: 'https://github.com/cagr1/FinancialDashboard'
-      },
-      {
-        id: 5,
-        title: 'Analítica de Datos',
-        description: 'Desarrollo de un modelo predictivo usando Python, RandomForest y XGBoost para analizar los indicadores de empleo en las principales provincias de Ecuador, proyectando tendencias hasta 2025.',
-        image: './assets/project5.png',
-        tech: ['Python', 'XGBoost', 'RandomForest'],
-        github: 'https://github.com/cagr1/1step-app'
       },
       {
         id: 6,
@@ -285,6 +178,15 @@ const projects = computed(() => {
     return [
       {
         id: 1,
+        title: 'Jen-Co Beauty Studio',
+        description: 'Beauty studio website featuring advanced animations and modern design.',
+        image: './assets/project-jenco.png',
+        tech: ['Vue.js', 'GSAP', 'Motion'],
+        github: 'https://github.com/cagr1/jenco-beauty',
+        link: 'https://jen-co.vercel.app/'
+      },
+      {
+        id: 2,
         title: 'SysCisepro v4.0',
         description: 'Comprehensive enterprise management system built with .NET and SQL Server. Includes inventory, billing, accounting, and advanced reporting modules.',
         image: './assets/project1.png',
@@ -292,7 +194,7 @@ const projects = computed(() => {
         github: 'https://github.com/cagr1/SysCisepro_v2.0'
       },
       {
-        id: 2,
+        id: 3,
         title: 'Karl Ecuador',
         description: 'E-commerce landing page with payment gateway and admin panel. Built with Vue.js.',
         image: './assets/project2.png',
@@ -300,7 +202,7 @@ const projects = computed(() => {
         github: 'https://github.com/cagr1/karlecuador'
       },
       {
-        id: 3,
+        id: 4,
         title: 'Cisepro ERP Web',
         description: 'Modern ERP web system for enterprise resource management, inventory control, and real-time financial analytics.',
         image: './assets/project3.png',
@@ -308,20 +210,12 @@ const projects = computed(() => {
         github: 'https://github.com/cagr1/Cisepro-ERP-Web'
       },
       {
-        id: 4,
+        id: 5,
         title: 'Financial Dashboard',
         description: 'Interactive financial dashboard with data visualization, real-time charts, and customizable reports.',
         image: './assets/project4.png',
         tech: ['Vue.js', 'EChart.js', 'Tailwind', '.Net Core 8', 'Vercel'],
         github: 'https://github.com/cagr1/FinancialDashboard'
-      },
-      {
-        id: 5,
-        title: 'Data Analytics',
-        description: 'Development of a predictive model using Python, RandomForest, and XGBoost to analyze employment indicators in major provinces of Ecuador, projecting trends up to 2025.',
-        image: '/assets/project5.png',
-        tech: ['Python', 'XGBoost', 'RandomForest'],
-        github: 'https://github.com/cagr1/1step-app'
       },
       {
         id: 6,
@@ -370,13 +264,57 @@ const closeProject = () => {
 
 // Lifecycle
 onMounted(() => {
+  // Preloader Logic
+  const text = "Hello World..."
+  let i = 0
+  const typeInterval = setInterval(() => {
+    typewrittenText.value += text.charAt(i)
+    i++
+    if (i > text.length) {
+      clearInterval(typeInterval)
+      setTimeout(() => {
+        loading.value = false
+        justMounted.value = false
+        
+        // Initialize GSAP Animations after preloader
+        setTimeout(() => {
+          // Animate Sections Title
+          gsap.utils.toArray('section h2').forEach(title => {
+            gsap.from(title, {
+              scrollTrigger: {
+                trigger: title,
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+              },
+              y: 50,
+              opacity: 0,
+              duration: 1,
+              ease: 'power3.out'
+            })
+          })
+
+          // Animate Text Blocks
+          gsap.utils.toArray('.text-slate-300, .text-slate-400').forEach(text => {
+            gsap.from(text, {
+              scrollTrigger: {
+                trigger: text,
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+              },
+              y: 30,
+              opacity: 0,
+              duration: 0.8,
+              ease: 'power2.out'
+            })
+          })
+        }, 100)
+      }, 1000)
+    }
+  }, 100)
+
   window.addEventListener('scroll', () => {
     scrolled.value = window.scrollY > 50
   })
-  
-  setTimeout(() => {
-    justMounted.value = false
-  }, 3000)
 })
 </script>
 
@@ -519,5 +457,15 @@ onMounted(() => {
 
 html {
   scroll-behavior: smooth;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

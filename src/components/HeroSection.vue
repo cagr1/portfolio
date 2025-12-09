@@ -1,141 +1,135 @@
-<!-- components/HeroSection.vue -->
 <template>
-  <section
-    id="home"
-    class="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden"
-  >
-    <!-- Background Blur Elements -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <div
-        class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse-slow"
-      ></div>
-      <div
-        class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"
-        style="animation-delay: 1s"
-      ></div>
-    </div>
+  <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20" @mousemove="handleMouseMove">
+    <!-- Background Blob -->
+    <div 
+      class="absolute w-[500px] h-[500px] bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl pointer-events-none transition-transform duration-100 ease-out"
+      :style="{ transform: `translate(${blobX}px, ${blobY}px)` }"
+    ></div>
 
-    <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
-      <!-- TEXT CONTENT -->
-      <div class="space-y-6">
-        <h1 class="text-5xl md:text-7xl font-bold leading-tight">
-          <span class="block text-slate-300">{{ t.hero.greeting }}</span>
-          <span
-            class="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent animate-gradient bg-300%"
-          >
-            {{ t.hero.name }}
-          </span>
+    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+      <!-- Text Content -->
+      <div class="text-center md:text-left space-y-6">
+        <h2 class="text-2xl md:text-3xl text-cyan-400 font-medium animate-fade-in-delay-1">
+          {{ t.hero.greeting }}
+        </h2>
+        <h1 class="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 tracking-tight animate-fade-in-delay-2 pb-2">
+          {{ t.hero.name }}
         </h1>
-        <p class="text-xl text-slate-400 leading-relaxed">{{ t.hero.title }}</p>
-        <p class="text-lg text-slate-500">{{ t.hero.description }}</p>
-
-        <div class="flex gap-4">
-          <a
-            href="#projects"
-            class="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg font-semibold overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50"
-          >
-            <span class="relative z-10">{{ t.hero.cta }}</span>
-            <div
-              class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-            ></div>
+        <h3 class="text-2xl md:text-4xl text-slate-400 font-light animate-fade-in-delay-3">
+          {{ t.hero.title }}
+        </h3>
+        
+        <!-- Buttons -->
+        <div class="flex flex-wrap gap-4 justify-center md:justify-start pt-8 animate-fade-in-delay-4">
+          <a href="#projects" class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold text-white shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transform hover:-translate-y-1 transition-all duration-300">
+            {{ t.hero.cta }}
           </a>
-          <a
-            href="#contact"
-            class="px-8 py-4 border-2 border-cyan-500/50 rounded-lg font-semibold hover:bg-cyan-500/10 hover:border-cyan-400 transition-all duration-500 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20"
-          >
-            {{ t.hero.contact }}
+          <a href="#contact" class="relative px-8 py-3 rounded-full font-semibold text-slate-300 group overflow-hidden bg-slate-950 transition-all duration-300 hover:text-white">
+            <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            <span class="absolute inset-[2px] bg-slate-950 rounded-full z-10"></span>
+            <span class="relative z-20 flex items-center gap-2">
+              {{ t.hero.contact }}
+            </span>
+            <!-- Animated Border -->
+            <span class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 -z-10 opacity-50 group-hover:opacity-100 animate-gradient-border"></span>
           </a>
         </div>
       </div>
 
-      <!-- PHOTO SECTION -->
-      <div ref="photoContainer" class="relative">
-        <div class="relative w-80 h-80 mx-auto">
-          <!-- Halo Glow Effect -->
-          <div
-            class="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-600 p-[2px]"
-          >
-            <div class="w-full h-full rounded-full bg-slate-900 p-2">
-              <img
-                src="/assets/Profile.jpeg"
-                alt="Profile Photo"
-                class="w-full h-full rounded-full object-cover transition-transform duration-700"
-              />
-            </div>
+      <!-- 3D Symbol Container -->
+      <div class="flex justify-center items-center perspective-container animate-fade-in-delay-2">
+        <div 
+          class="symbol-3d-wrapper"
+          :style="{ transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)` }"
+        >
+          <div class="symbol-content">
+            <span class="text-7xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 via-white to-purple-500 filter drop-shadow-lg">
+              {&lt;/&gt;}
+            </span>
           </div>
-
-          <!-- Outer ring soft glow -->
-          <div
-            class="absolute -inset-2 rounded-full bg-gradient-to-r from-cyan-400/30 via-blue-400/20 to-purple-500/30 blur-xl opacity-70 animate-pulse"
-          ></div>
+          <!-- Glow behind symbol -->
+          <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 blur-2xl -z-10 rounded-full"></div>
         </div>
       </div>
     </div>
+
+    
   </section>
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
-import { gsap } from "gsap";
+import { ref, onMounted, onUnmounted } from 'vue'
+import { Icon } from '@iconify/vue'
 
-defineProps({
-  t: Object,
-});
+const props = defineProps({
+  t: {
+    type: Object,
+    required: true
+  }
+})
 
-const photoContainer = ref(null);
+const blobX = ref(0)
+const blobY = ref(0)
+const rotateX = ref(0)
+const rotateY = ref(0)
 
-onMounted(() => {
-  // Fade-in and subtle scale animation for photo
-  gsap.from(photoContainer.value, {
-    opacity: 0,
-    scale: 0.8,
-    duration: 1.5,
-    ease: "power3.out",
-  });
-
-  // Floating idle motion (subtle up/down)
-  gsap.to(photoContainer.value, {
-    y: -10,
-    duration: 3,
-    repeat: -1,
-    yoyo: true,
-    ease: "sine.inOut",
-  });
-});
+const handleMouseMove = (e) => {
+  const { clientX, clientY } = e
+  const { innerWidth, innerHeight } = window
+  
+  // Blob movement (laggy follow)
+  blobX.value = (clientX - innerWidth / 2) * 0.1
+  blobY.value = (clientY - innerHeight / 2) * 0.1
+  
+  // 3D Rotation
+  const x = (clientX - innerWidth / 2) / (innerWidth / 2)
+  const y = (clientY - innerHeight / 2) / (innerHeight / 2)
+  
+  rotateY.value = x * 20 // Max 20deg rotation
+  rotateX.value = -y * 20
+}
 </script>
 
 <style scoped>
-@keyframes pulse-slow {
-  0%, 100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.05);
-  }
-}
-.animate-pulse-slow {
-  animation: pulse-slow 6s ease-in-out infinite;
+.perspective-container {
+  perspective: 1000px;
+  height: 400px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.bg-300% {
-  background-size: 300% 300%;
+.symbol-3d-wrapper {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
 }
 
-.animate-gradient {
-  animation: gradient-flow 6s ease infinite;
+.symbol-3d-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 32px;
+  background: linear-gradient(45deg, #06b6d4, #a855f7);
+  z-index: -1;
+  opacity: 0.5;
+  filter: blur(10px);
 }
 
-@keyframes gradient-flow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.symbol-content {
+  transform: translateZ(50px);
 }
 </style>
