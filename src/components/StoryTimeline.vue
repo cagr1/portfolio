@@ -86,7 +86,7 @@
                 ></div>
               </div>
 
-              <!-- Content Card -->
+              <!-- Content Card (Left/Right) -->
               <div 
                 class="ml-16 md:ml-0 md:w-1/2 px-4 md:px-12 w-full"
                 :style="{
@@ -114,8 +114,45 @@
                 </div>
               </div>
               
-              <!-- Empty space for alternating layout -->
-              <div class="hidden md:block md:w-1/2"></div>
+              <!-- Visual Element (Right/Left) - Hidden on mobile -->
+              <div 
+                class="hidden md:block md:w-1/2 px-4 md:px-12"
+                :style="{
+                  opacity: activeIndex >= index ? 1 : 0,
+                  transform: activeIndex >= index ? 'scale(1) rotate(0deg)' : 'scale(0.5) rotate(-10deg)',
+                  transition: 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                }"
+              >
+                <div class="relative w-full h-full min-h-[200px] flex items-center justify-center">
+                  <!-- Abstract Background Shapes - 3D Effect Layers -->
+                  <div class="absolute w-32 h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-tr from-slate-800 to-slate-900 border border-slate-700/50 shadow-2xl flex items-center justify-center animate-pulse-slow">
+                    <div 
+                      class="absolute inset-0 rounded-full opacity-20 blur-xl bg-gradient-to-r from-cyan-400 to-purple-500"
+                    ></div>
+                  </div>
+
+                  <!-- Floating Icon Container -->
+                  <div 
+                    class="relative z-10 p-6 rounded-2xl bg-slate-950/80 backdrop-blur-md border border-slate-700 shadow-[0_0_50px_rgba(0,0,0,0.5)] floating-icon"
+                  >
+                    <!-- Dynamic Icon based on timeline item -->
+                    <component 
+                      :is="getIcon(index)"
+                      :icon="getIconName(index)"
+                      class="w-12 h-12 md:w-16 md:h-16 text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]"
+                    />
+                    
+                    <!-- Orbital elements for "3D" feel -->
+                    <div class="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-slate-200 shadow-[0_0_10px_white]"></div>
+                    <div class="absolute -bottom-4 -left-2 w-8 h-8 rounded-full border border-slate-600/50 backdrop-blur-sm"></div>
+                  </div>
+                  
+                  <!-- Connecting lines (decorative) -->
+                  <svg class="absolute w-full h-full pointer-events-none opacity-20" style="z-index: 0;">
+                    <circle cx="50%" cy="50%" r="40%" fill="none" stroke="currentColor" stroke-dasharray="4 4" class="text-slate-600" />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -130,6 +167,7 @@
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Icon } from '@iconify/vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -150,6 +188,23 @@ const activeIndex = ref(-1)
 const svgHeight = ref(1000)
 const scrollProgress = ref(0)
 let scrollTriggerInstance = null
+
+// Icon mapping based on timeline content
+const iconMap = [
+  'mdi:code-tags',           // 2018 - First Steps (HTML/CSS/JS)
+  'mdi:database-cog',        // 2019 - Backend & Databases
+  'mdi:application-brackets', // 2020 - Full-Stack Developer
+  'mdi:cloud-upload',        // 2022 - Cloud & AI
+  'mdi:rocket-launch'        // 2024 - Present
+]
+
+const getIcon = (index) => {
+  return Icon
+}
+
+const getIconName = (index) => {
+  return iconMap[index] || 'mdi:code-tags'
+}
 
 // Generate smooth curve path
 const updatePath = () => {
@@ -323,17 +378,32 @@ onUnmounted(() => {
   animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
-@keyframes bounce {
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes float {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-15px);
   }
 }
 
-.animate-bounce {
-  animation: bounce 2s ease-in-out infinite;
+.floating-icon {
+  animation: float 4s ease-in-out infinite;
 }
 
 .scroll-indicator {
