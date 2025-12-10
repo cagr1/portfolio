@@ -119,15 +119,7 @@
             </div>
           </div>
 
-          <!-- Scroll indicator -->
-          <div class="scroll-indicator fixed bottom-10 left-1/2 transform -translate-x-1/2 z-50 flex flex-col items-center gap-2 opacity-100 transition-opacity duration-500" :class="{ 'opacity-0': scrollProgress > 0.1 }">
-            <span class="text-slate-400 text-xs tracking-widest">SCROLL</span>
-            <svg viewBox="0 0 24 24" class="w-6 h-6 animate-bounce">
-              <line class="stroke-slate-400 stroke-2" x1="12" y1="1" x2="12" y2="22.5" fill="none" stroke-linecap="round"/>
-              <line class="stroke-slate-400 stroke-2" x1="12.1" y1="22.4" x2="18.9" y2="15.6" fill="none" stroke-linecap="round"/>
-              <line class="stroke-slate-400 stroke-2" x1="11.9" y1="22.4" x2="5.1" y2="15.6" fill="none" stroke-linecap="round"/>
-            </svg>
-          </div>
+          
         </div>
       </div>
     </div>
