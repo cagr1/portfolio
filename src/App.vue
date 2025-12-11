@@ -146,19 +146,20 @@ const projects = computed(() => {
       },
       {
         id: 3,
-        title: 'Karl Ecuador',
-        description: 'Landing page tipo e-commerce con pasarela de pagos y panel administrativo. Desarrollada con Vue.js.',
-        image: './assets/project2.png',
-        tech: ['Laravel', 'Vue.js', 'Tailwind', 'Vercel'],
-        github: 'https://github.com/cagr1/karlecuador'
-      },
-      {
-        id: 4,
-        title: 'Cisepro ERP Web',
+         title: 'Cisepro ERP Web',
         description: 'Sistema ERP web moderno con gestión de recursos empresariales, control de inventario y análisis financieros en tiempo real.',
         image: './assets/project3.png',
         tech: ['.Net Core 8', 'Vue.js', 'Docker'],
         github: 'https://github.com/cagr1/Cisepro-ERP-Web'
+        
+      },
+      {
+        id: 4,
+       title: 'Karl Ecuador',
+        description: 'Landing page tipo e-commerce con pasarela de pagos y panel administrativo. Desarrollada con Vue.js.',
+        image: './assets/project2.png',
+        tech: ['Laravel', 'Vue.js', 'Tailwind', 'Vercel'],
+        github: 'https://github.com/cagr1/karlecuador'
       },
       {
         id: 5,
@@ -173,7 +174,7 @@ const projects = computed(() => {
         title: 'Coworking',
         description: 'Sistema de reservas para espacios de coworking universitarios, gestión de proyectos y control de acceso.',
         image: './assets/project6.jpeg',
-        tech: ['Laravel', 'Vue.js', 'PostgreSQL', 'Stripe', 'Vercel'],
+        tech: ['Laravel', 'Vue.js', 'PostgreSQL', 'Stripe'],
         github: 'https://github.com/cagr1/coworking'
       }
     ]
@@ -198,19 +199,20 @@ const projects = computed(() => {
       },
       {
         id: 3,
-        title: 'Karl Ecuador',
-        description: 'E-commerce landing page with payment gateway and admin panel. Built with Vue.js.',
-        image: './assets/project2.png',
-        tech: ['Laravel', 'Vue.js', 'Tailwind', 'Vercel'],
-        github: 'https://github.com/cagr1/karlecuador'
-      },
-      {
-        id: 4,
         title: 'Cisepro ERP Web',
         description: 'Modern ERP web system for enterprise resource management, inventory control, and real-time financial analytics.',
         image: './assets/project3.png',
         tech: ['.Net Core 8', 'Vue.js', 'Docker'],
         github: 'https://github.com/cagr1/Cisepro-ERP-Web'
+        
+      },
+      {
+        id: 4,
+        title: 'Karl Ecuador',
+        description: 'E-commerce landing page with payment gateway and admin panel. Built with Vue.js.',
+        image: './assets/project2.png',
+        tech: ['Laravel', 'Vue.js', 'Tailwind', 'Vercel'],
+        github: 'https://github.com/cagr1/karlecuador'
       },
       {
         id: 5,
