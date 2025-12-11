@@ -14,7 +14,7 @@ This portfolio showcases my work, skills, and experience as a **Full-Stack Devel
 
 ## 📸 Preview
 
-![Portfolio Preview](./preview.png)
+![Portfolio Preview](./public/preview.png)
 
 ---
 
