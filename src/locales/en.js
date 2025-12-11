@@ -1,3 +1,5 @@
+
+
 export const en = {
     nav: {
         logo: 'Dev.Portfolio',
@@ -14,14 +16,16 @@ export const en = {
         greeting: 'Hi, I\'m',
         name: 'Carlos Gallardo',
         title: 'Full-Stack Developer',
+        description: 'I’m a full-stack developer who transforms complex systems into fast, scalable and clean digital products.',
         cta: 'View Projects',
-        contact: 'Contact'
+        contact: 'Contact',
+        techStack: "Vue 3, .NET Core, C#, Laravel, Python, SQL Server, AWS ",
     },
     about: {
         title: 'About Me',
         role: 'Systems Engineer | Full-Stack Developer',
-        intro: 'I am a full-stack developer focused on modernizing systems and creating scalable applications that solve real needs. I have experience transforming legacy ERPs into efficient web platforms with .NET Core and Vue.js, as well as building real-time dashboards and automations that improve team operations.',
-        intro2: 'In addition to delivering robust back-end solutions, I also care about visual experience and interaction. I enjoy designing modern interfaces with good usability and fluid animations using tools like GSAP, ensuring each project feels agile, clear, and pleasant to use.',
+        intro: 'I’m a full-stack developer who enjoys modernizing systems and building fast, scalable, long-lasting applications. Over the years, I’ve worked on a wide range of projects—from upgrading enterprise platforms to creating real-time dashboards, automations, and more intuitive web experiences.',
+        intro2: 'I’m passionate about backend architecture and performance, but I also care about how things feel. I enjoy crafting clean, modern interfaces with smooth animations so every product feels clear, fast, and pleasant to use.',
         intro3: 'Currently, I continue to deepen my knowledge in data analysis and Machine Learning to develop smarter and performance-oriented products.',
         keyExpTitle: 'Key Experience:',
         keyExp: [
@@ -39,32 +43,38 @@ export const en = {
     story: {
         title: 'My Story',
         timeline: [
-            {
-                year: '2018',
-                title: 'First Steps',
-                description: 'Started my web development journey learning HTML, CSS and JavaScript. Discovered my passion for creating digital experiences.',
-            },
-            {
-                year: '2019',
-                title: 'Backend & Databases',
-                description: 'Dove into backend development starting with PHP (Laravel) and MySQL, then moved to .NET and C#, learning about software architecture and SQL Server databases.',
-            },
-            {
-                year: '2020',
-                title: 'Full-Stack Developer',
-                description: 'Expanded my skills with .NET Core, Laravel and Vue.js, becoming a full-stack developer. Started working on enterprise projects.',
-            },
-            {
-                year: '2022',
-                title: 'Cloud & AI',
-                description: 'Adopted cloud technologies like Vercel and Supabase. Integrated AI into my projects with Claude, taking applications to the next level.',
-            },
-            {
-                year: '2024',
-                title: 'Present',
-                description: 'Currently developing innovative solutions combining all my skills. Always learning and improving.',
-            }
-        ]
+  {
+    year: '2018',
+    title: 'First Steps',
+    description:
+      'I began exploring web development with HTML, CSS, and JavaScript. It was the moment I realized how much I enjoyed building things that people can actually use.',
+  },
+  {
+    year: '2019',
+    title: 'Backend Foundations',
+    description:
+      'I moved into backend development, working with PHP/Laravel and databases. Later, I transitioned to .NET and C#, where I started shaping a solid understanding of architecture and scalable systems.',
+  },
+  {
+    year: '2020',
+    title: 'Becoming Full-Stack',
+    description:
+      'I combined my backend experience with modern front-end tools and frameworks, expanding into full-stack development and contributing to enterprise-level applications.',
+  },
+  {
+    year: '2022',
+    title: 'Building Bigger',
+    description:
+      'I started delivering more complex projects, integrating cloud services, real-time features, and automations—while refining my focus on performance and user experience.',
+  },
+  {
+    year: '2024',
+    title: 'Today',
+    description:
+      'I work on creating modern, scalable solutions by blending engineering, UI/UX and continuous learning in areas like data analysis and AI.',
+  }
+]
+
     },
     projects: {
         title: 'Featured Projects',
@@ -72,7 +82,8 @@ export const en = {
         technologies: 'Technologies'
     },
     footer: {
-        cta: 'Let\'s build something great together.',
+        cta: 'Have an idea?',
+        ctaSubtitle: 'Let\'s build it together.',
         emailButton: 'Say Hello',
         copyright: '© ' + new Date().getFullYear() + ' Carlos Gallardo. All rights reserved.'
     }

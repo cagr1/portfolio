@@ -7,7 +7,7 @@
     </div>
 
     <div class="container mx-auto px-6 relative z-10">
-      <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent" >
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-white" >
         {{ t.about.title }}
       </h2>
 

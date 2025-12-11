@@ -1,7 +1,7 @@
 <template>
   <section id="tech" class="py-24 relative overflow-hidden">
     <div class="container mx-auto px-6 mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-16  text-white bg-clip-text text-transparent">
         {{ t.tech.title }}
       </h2>
     </div>
@@ -17,10 +17,10 @@
             class="tech-item flex flex-col items-center gap-4 min-w-[140px] mx-8 group"
           >
             <div 
-              class="text-6xl transition-all duration-300 group-hover:scale-110"
+              class="text-6xl transition-all duration-300 group-hover:scale-110 grayscale group-hover:grayscale-0"
               :class="tech.color"
             >
-              <Icon :icon="tech.icon" />
+              <Icon :icon="tech.icon" class="gray-scale" />
             </div>
             <span class="text-slate-400 font-medium text-sm group-hover:text-cyan-400 transition-colors">
               {{ tech.name }}
@@ -38,7 +38,7 @@
             class="tech-item flex flex-col items-center gap-4 min-w-[140px] mx-8 group"
           >
             <div 
-              class="text-6xl transition-all duration-300 group-hover:scale-110"
+              class="text-6xl transition-all duration-300 group-hover:scale-110 grayscale group-hover:grayscale-0"
               :class="tech.color"
             >
               <Icon :icon="tech.icon" />

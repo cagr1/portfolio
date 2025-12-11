@@ -234,17 +234,17 @@ const socialLinks = [
   {
     name: 'X (Twitter)',
     url: 'https://x.com/CarlosGallar85',
-    icon: 'prime:twitter'
+    icon: 'streamline-logos:x-twitter-logo'
   },
   {
     name: 'GitHub',
     url: 'https://github.com/cagr1',
-    icon: 'prime:github'
+    icon: 'streamline-logos:github-logo-2-solid'
   },
   {
     name: 'LinkedIn',
     url: 'https://www.linkedin.com/in/carlos-gallardo-5282a0121/',
-    icon: 'prime:linkedin'
+    icon: 'streamline-logos:linkedin-logo-solid'
   }
 ]
 // Methods
