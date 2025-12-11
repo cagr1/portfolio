@@ -103,6 +103,7 @@ const technologies = [
   { name: 'JavaScript', icon: 'devicon:javascript', color: 'text-yellow-400' },
   { name: 'Tailwind', icon: 'devicon:tailwindcss', color: 'text-cyan-400' },
   { name: 'SQL Server', icon: 'simple-icons:microsoftsqlserver', color: 'text-red-600' },
+  {name: 'AWS', icon: 'mdi:aws', color: 'text-white'},
   { name: 'PostgreSQL', icon: 'devicon:postgresql', color: 'text-blue-600' },
   { name: 'Kotlin', icon: 'devicon:kotlin', color: 'text-purple-600' },
   {name: 'PHP', icon: 'devicon:php', color: 'text-blue-600'},
@@ -138,11 +139,12 @@ const projects = computed(() => {
       },
       {
         id: 2,
-        title: 'SysCisepro v4.0',
-        description: 'Sistema integral de gestión empresarial desarrollado con .NET y SQL Server. Incluye módulos de inventario, facturación, contabilidad y reportes avanzados.',
-        image: './assets/project1.png',
-        tech: ['.NET', 'C#', 'SQL Server', 'WinForms'],
-        github: 'https://github.com/cagr1/SysCisepro_v2.0'
+        title: 'Financial Dashboard',
+        description: 'Dashboard financiero interactivo con visualización de datos, gráficos en tiempo real y reportes personalizables.',
+        image: './assets/project4.png',
+        tech: ['Vue.js', 'EChart.js', 'Tailwind', '.Net Core 8', 'Vercel'],
+        github: 'https://github.com/cagr1/FinancialDashboard'
+        
       },
       {
         id: 3,
@@ -163,11 +165,11 @@ const projects = computed(() => {
       },
       {
         id: 5,
-        title: 'Financial Dashboard',
-        description: 'Dashboard financiero interactivo con visualización de datos, gráficos en tiempo real y reportes personalizables.',
-        image: './assets/project4.png',
-        tech: ['Vue.js', 'EChart.js', 'Tailwind', '.Net Core 8', 'Vercel'],
-        github: 'https://github.com/cagr1/FinancialDashboard'
+        title: 'SysCisepro v4.0',
+        description: 'Sistema integral de gestión empresarial desarrollado con .NET y SQL Server. Incluye módulos de inventario, facturación, contabilidad y reportes avanzados.',
+        image: './assets/project1.png',
+        tech: ['.NET', 'C#', 'SQL Server', 'WinForms'],
+        github: 'https://github.com/cagr1/SysCisepro_v2.0'
       },
       {
         id: 6,
@@ -191,11 +193,11 @@ const projects = computed(() => {
       },
       {
         id: 2,
-        title: 'SysCisepro v4.0',
-        description: 'Comprehensive enterprise management system built with .NET and SQL Server. Includes inventory, billing, accounting, and advanced reporting modules.',
-        image: './assets/project1.png',
-        tech: ['.NET', 'C#', 'SQL Server', 'WinForms'],
-        github: 'https://github.com/cagr1/SysCisepro_v2.0'
+        title: 'Financial Dashboard',
+        description: 'Interactive financial dashboard with data visualization, real-time charts, and customizable reports.',
+        image: './assets/project4.png',
+        tech: ['Vue.js', 'EChart.js', 'Tailwind', '.Net Core 8', 'Vercel'],
+        github: 'https://github.com/cagr1/FinancialDashboard'
       },
       {
         id: 3,
@@ -216,11 +218,12 @@ const projects = computed(() => {
       },
       {
         id: 5,
-        title: 'Financial Dashboard',
-        description: 'Interactive financial dashboard with data visualization, real-time charts, and customizable reports.',
-        image: './assets/project4.png',
-        tech: ['Vue.js', 'EChart.js', 'Tailwind', '.Net Core 8', 'Vercel'],
-        github: 'https://github.com/cagr1/FinancialDashboard'
+        title: 'SysCisepro v4.0',
+        description: 'Comprehensive enterprise management system built with .NET and SQL Server. Includes inventory, billing, accounting, and advanced reporting modules.',
+        image: './assets/project1.png',
+        tech: ['.NET', 'C#', 'SQL Server', 'WinForms'],
+        github: 'https://github.com/cagr1/SysCisepro_v2.0'
+        
       },
       {
         id: 6,
@@ -313,9 +316,9 @@ onMounted(() => {
             })
           })
         }, 100)
-      }, 1000)
+      }, 1200)
     }
-  }, 100)
+  }, 120)
 
   window.addEventListener('scroll', () => {
     scrolled.value = window.scrollY > 50
