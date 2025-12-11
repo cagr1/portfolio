@@ -39,39 +39,41 @@ export const es = {
         title: 'Stack Tecnológico'
     },
     story: {
-        title: 'Mi Historia',
-        timeline: [
-  {
-    year: '2018',
-    title: 'The Beginning',
-    description:
-      'My journey started with the basics of the web. HTML, CSS and JavaScript opened the door to a world where I could turn ideas into real interfaces.',
-  },
-  {
-    year: '2019',
-    title: 'Finding the Backend',
-    description:
-      'I dove into server-side development using Laravel, and later .NET and C#, discovering how much I enjoyed architecture, databases and building systems that run reliably.',
-  },
-  {
-    year: '2020',
-    title: 'Full-Stack Mindset',
-    description:
-      'By merging backend and frontend skills, I stepped fully into full-stack development. This was the year I began working on robust enterprise solutions.',
-  },
-  {
-    year: '2022',
-    title: 'Scaling Up',
-    description:
-      'I embraced cloud platforms, real-time tools and automation workflows, delivering faster products with better user experiences and refined UI/UX thinking.',
-  },
-  {
-    year: '2024',
-    title: 'Now',
-    description:
-      'Today I continue creating modern solutions while exploring data, AI and new technologies that help me build smarter, more intuitive products.',
-  }
-],
+  title: 'Mi Historia',
+  timeline: [
+    {
+      year: '2018',
+      title: 'Primeros Pasos',
+      description:
+        'Comencé a explorar el desarrollo web con HTML, CSS y JavaScript. Fue el momento en que descubrí lo mucho que disfrutaba construir cosas que las personas realmente puedan usar.',
+    },
+    {
+      year: '2019',
+      title: 'Bases de Backend',
+      description:
+        'Me adentré en el desarrollo backend trabajando con PHP/Laravel y bases de datos. Más adelante di el salto a .NET y C#, donde empecé a consolidar una comprensión sólida de arquitectura y sistemas escalables.',
+    },
+    {
+      year: '2020',
+      title: 'Rumbo Full-Stack',
+      description:
+        'Combiné mi experiencia en backend con herramientas y frameworks modernos del front-end, expandiéndome hacia el desarrollo full-stack y contribuyendo en aplicaciones de nivel empresarial.',
+    },
+    {
+      year: '2022',
+      title: 'Construyendo a Mayor Escala',
+      description:
+        'Empecé a entregar proyectos más complejos, integrando servicios en la nube, funciones en tiempo real y automatizaciones, mientras afinaba mi enfoque en rendimiento y experiencia de usuario.',
+    },
+    {
+      year: '2024',
+      title: 'Hoy',
+      description:
+        'Trabajo en crear soluciones modernas y escalables combinando ingeniería, UI/UX y aprendizaje continuo en áreas como análisis de datos e inteligencia artificial.',
+    }
+  ]
+
+
 
     },
     projects: {
@@ -81,7 +83,7 @@ export const es = {
     },
     footer: {
         cta: 'Tienes una idea?',
-        ctaSubtitle: 'Construyémonos un proyecto juntos.',
+        ctaSubtitle: 'Hagamos un proyecto juntos.',
         emailButton: 'Contáctame',
         copyright: '© ' + new Date().getFullYear() + ' Carlos Gallardo. Todos los derechos reservados.'
     }

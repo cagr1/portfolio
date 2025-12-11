@@ -1,4 +1,7 @@
 <template>
+  <!-- Background animado -->
+  <Background />
+  
   <section class="relative z-10 min-h-screen flex items-center justify-center pt-20 pb-20 px-6">
     <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
       
@@ -106,6 +109,7 @@ import { ref, onMounted } from 'vue'
 import { Icon } from '@iconify/vue'
 import { gsap } from 'gsap'
 import CodeCard from './CodeCard.vue'
+import Background from './Background.vue'
 
 defineProps({
   t: Object

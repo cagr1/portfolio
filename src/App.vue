@@ -105,11 +105,14 @@ const technologies = [
   { name: 'SQL Server', icon: 'simple-icons:microsoftsqlserver', color: 'text-red-600' },
   { name: 'PostgreSQL', icon: 'devicon:postgresql', color: 'text-blue-600' },
   { name: 'Kotlin', icon: 'devicon:kotlin', color: 'text-purple-600' },
-  { name: 'Supabase', icon: 'simple-icons:supabase', color: 'text-green-400' },
+  {name: 'PHP', icon: 'devicon:php', color: 'text-blue-600'},
+  {name: 'TypeScript', icon: 'devicon:typescript', color: 'text-blue-600'},
   { name: 'Python', icon: 'devicon:python', color: 'text-white' },
   { name: 'Git', icon: 'devicon:git', color: 'text-orange-600' },
   { name: 'GSAP', icon: 'simple-icons:gsap', color: 'text-green-500' },
-  { name: 'Motion', icon: 'simple-icons:framer', color: 'text-white' }
+  { name: 'Motion', icon: 'simple-icons:framer', color: 'text-white' },
+  {name: 'Vercel', icon: 'simple-icons:vercel', color: 'text-white'},
+  { name: 'React', icon: 'devicon:react', color: 'text-blue-600' }
 ]
 
 
